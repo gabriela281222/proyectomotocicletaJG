@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de venta de moto Toro JG </title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background: url(imagenes/fondo.jpg) no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #fe3030 3px solid;
+        }
+        header a {
+            color: #f8f2f2;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        #showcase {
+            min-height: 400px; 
+            text-align: center;
+            color: #ffffff;
+        }
+        #showcase h1 {
+            margin-top: 100px;
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+        #showcase p {
+            font-size: 20px;
+        }
+        .button {
+            display: inline-block;
+            color: #ffffff;
+            background: #d10000;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background: #ab6464;
+        }
+        #main {
+            padding: 20px;
+            background: #000000;
+            text-align: center;
+            color: #ffffff;
+            margin-top: 40px;
+        }
+        footer {
+            background: #000000;
+            text-align: center;
+            color: #ffffff;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        .form-container {
+            display: none;
+            padding: 20px;
+            background: #000000;
+            color: #ffffff;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-container.active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background: #e92121;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background: #e83333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <img src="imagenes/logo.png" alt="logo" style="height: 50px;">
+                <h1> Motos JG</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#" onclick="window.close();">Salir</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="container">
+            <h1>Bienvenido Registro de venta de Motos JG</h1>
+        </div>
+    </section>
+
+    <div class="container" id="main">
+        <h2>Gestión de Ventas</h2>
+        <button class="button" onclick="mostrarFormulario('introducir')">Introducir Registro de Venta</button>
+        <button class="button" onclick="mostrarFormulario('modificar')">Modificar Registro</button>
+        <button class="button" onclick="imprimirListaRegistros()">Imprimir Lista de Registros</button>
+    </div>
+
+    <div class="container form-container" id="form-introducir">
+        <h2>Introducir Registro</h2>
+        <div class="form-group">
+            <label for="nombreCliente">Nombre del Cliente:</label>
+            <input type="text" id="nombreCliente" placeholder="Ingresar Nombre y apellido">
+        </div>
+        <div class="form-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" placeholder="Ingresar Dirección">
+        </div>
+        <div class="form-group">
+            <label for="marcaMoto">Marca de la Moto:</label>
+            <select id="marcaMoto">
+                <option disabled selected value="">Escoge una opción</option>
+                <option value="Toro">Toro</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="modeloMoto">Modelo de la Moto:</label>
+            <select id="modeloMoto">
+                <option disabled selected value="">Escoge una opción</option>
+                <option value="Jaguar Tr150cc">Jaguar Tr150cc</option>
+                <option value="Leon Tr200cc">Leon Tr200cc</option>
+                <option value="Rex Tr250cc">Rex Tr250cc</option>
+                <option value="Fox TR180cc">Fox TR180cc</option>
+                <option value="Power Tr180cc">Power Tr180cc</option>
+                <option value="tank Tr180cc">tank Tr180cc</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" min="1">
+        </div>
+        <div class="form-group">
+            <button onclick="introducirRegistro()">Guardar Registro</button>
+        </div>
+    </div>
+
+    <div class="container form-container" id="form-modificar">
+        <h2>Modificar Registro</h2>
+        <div class="form-group">
+            <label for="nombreClienteModificar">Nombre del Cliente:</label>
+            <input type="text" id="nombreClienteModificar" placeholder="ingresar Nombre y apellido">
+        </div>
+        <div class="form-group">
+            <label for="direccionModificar">Dirección:</label>
+            <input type="text" id="direccionModificar" placeholder="ingesar direccion">
+        </div>
+        <div class="form-group">
+            <label for="marcaMotoModificar">Marca de la Moto:</label>
+            <select id="marcaMotoModificar">
+                <option disabled selected value="">Escoge una opción</option>
+                <option value="Toro">Toro</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="modeloMotoModificar">Modelo de la Moto:</label>
+            <select id="modeloMotoModificar">
+                <option disabled selected value="">Escoge una opción</option>
+                <option value="Jaguar Tr150cc">Jaguar Tr150cc</option>
+                <option value="Leon Tr200cc">Leon Tr200cc</option>
+                <option value="Rex Tr250cc">Rex Tr250cc</option>
+                <option value="Fox TR180cc">Fox TR180cc</option>
+                <option value="Power Tr180cc">Power Tr180cc</option>
+                <option value="tank Tr180cc">tank Tr180cc</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cantidadModificar">Cantidad:</label>
+            <input type="number" id="cantidadModificar" min="1">
+        </div>
+        <div class="form-group">
+            <button onclick="modificarRegistro()">Modificar Registro</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Concesionario de Motos JG &copy; 2025</p>
+    </footer>
+
+    <script>
+        const PRECIOS_POR_MODELO = {
+            "Jaguar Tr150cc": 1500.0,
+            "Leon Tr200cc": 2000.0,
+            "Rex Tr250cc": 2500.0,
+            "Fox TR180cc": 1800.0,
+            "Power Tr180cc": 1800.0,
+            "tank Tr180cc": 1800.0
+        };
+
+        let registros = [];
+
+        function mostrarFormulario(formulario) {
+            document.getElementById('form-introducir').classList.remove('active');
+            document.getElementById('form-modificar').classList.remove('active');
+            if (formulario === 'introducir') {
+                document.getElementById('form-introducir').classList.add('active');
+            } else if (formulario === 'modificar') {
+                document.getElementById('form-modificar').classList.add('active');
+            }
+        }
+
+        function validarNombreCliente(nombreCliente) {
+            return nombreCliente.length > 0;
+        }
+
+        function validarDireccion(direccion) {
+            return direccion.length > 0;
+        }
+
+        function validarModeloMoto(modeloMoto) {
+            return modeloMoto in PRECIOS_POR_MODELO;
+        }
+
+        function validarCantidad(cantidad) {
+            const num = parseInt(cantidad, 10);
+            return !isNaN(num) && num > 0;
+        }
+
+        function introducirRegistro() {
+            let nombreCliente = document.getElementById('nombreCliente').value;
+            if (!validarNombreCliente(nombreCliente)) {
+                alert("Nombre del cliente inválido.");
+                return;
+            }
+
+            let direccion = document.getElementById('direccion').value;
+            if (!validarDireccion(direccion)) {
+                alert("Dirección inválida.");
+                return;
+            }
+
+            let marcaMoto = document.getElementById('marcaMoto').value;
+            let modeloMoto = document.getElementById('modeloMoto').value;
+            if (!validarModeloMoto(modeloMoto)) {
+                alert("Modelo de la moto inválido.");
+                return;
+            }
+
+            const precio = PRECIOS_POR_MODELO[modeloMoto];
+
+            let cantidad = document.getElementById('cantidad').value;
+            if (!validarCantidad(cantidad)) {
+                alert("Cantidad inválida. Debe ser un número entero positivo.");
+                return;
+            }
+
+            registros.push({
+                nombreCliente,
+                direccion,
+                marcaMoto,
+                modeloMoto,
+                precio,
+                cantidad: parseInt(cantidad, 10)
+            });
+            alert("Registro introducido con éxito.");
+            document.getElementById('form-introducir').reset();
+        }
+
+        function modificarRegistro() {
+            let nombreCliente = document.getElementById('nombreClienteModificar').value;
+            if (!validarNombreCliente(nombreCliente)) {
+                alert("Nombre del cliente inválido.");
+                return;
+            }
+
+            let direccion = document.getElementById('direccionModificar').value;
+            if (!validarDireccion(direccion)) {
+                alert("Dirección inválida.");
+                return;
+            }
+
+            let marcaMoto = document.getElementById('marcaMotoModificar').value;
+            let modeloMoto = document.getElementById('modeloMotoModificar').value;
+            if (!validarModeloMoto(modeloMoto)) {
+                alert("Modelo de la moto inválido.");
+                return;
+            }
+
+            const precio = PRECIOS_POR_MODELO[modeloMoto];
+
+            let cantidad = document.getElementById('cantidadModificar').value;
+            if (!validarCantidad(cantidad)) {
+                alert("Cantidad inválida. Debe ser un número entero positivo.");
+                return;
+            }
+
+            const registro = registros.find(r => r.nombreCliente === nombreCliente && r.direccion === direccion && r.marcaMoto === marcaMoto && r.modeloMoto === modeloMoto);
+            if (registro) {
+                registro.cantidad = parseInt(cantidad, 10);
+                registro.precio = precio;
+                alert("Registro modificado con éxito.");
+                document.getElementById('form-modificar').reset();
+            } else {
+                alert("Registro no encontrado.");
+            }
+        }
+
+        function imprimirListaRegistros() {
+            if (registros.length === 0) {
+                alert("No hay registros para mostrar.");
+                return;
+            }
+
+            let lista = "";
+            registros.forEach(registro => {
+                const total = registro.precio * registro.cantidad;
+                lista += `Nombre del Cliente: ${registro.nombreCliente}, Dirección: ${registro.direccion}, Marca de la Moto: ${registro.marcaMoto}, Modelo de la Moto: ${registro.modeloMoto}, Precio: ${registro.precio}, Cantidad: ${registro.cantidad}, Total: ${total}\n`;
+            });
+            alert(lista);
+        }
+    </script>
+</body>
+</html>
